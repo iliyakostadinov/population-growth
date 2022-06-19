@@ -4,6 +4,7 @@ import iliyakostadinov.populationgrowth.data.CountryPopulationRecord;
 import iliyakostadinov.populationgrowth.data.comparators.CountryPopulationComparator;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class PopulationRepository {
   private final Map<String, Map<Integer, CountryPopulationRecord>> countriesPopulationByYear = new HashMap<>();
   private final Map<Integer, Set<CountryPopulationRecord>> sortedPopulationsByYear = new HashMap<>();
 
-  public void saveAll(List<CountryPopulationRecord> populationData) {
+  public void saveAll(Collection<CountryPopulationRecord> populationData) {
     if (populationData == null) {
       throw new NullPointerException("Population data cannot be null.");
     }
