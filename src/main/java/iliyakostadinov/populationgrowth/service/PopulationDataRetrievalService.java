@@ -33,7 +33,7 @@ public class PopulationDataRetrievalService {
   public List<String> getMostPopulatedCountriesInYear(int year, int limit) {
     validateYearRange(year);
 
-    if (limit < 1 || limit > 100) {
+    if (limit < MIN_RESULTS || limit > MAX_RESULTS) {
       throw new IllegalArgumentException(
           String.format("Requested result size must be in range [%d, %d]", MIN_RESULTS, MAX_RESULTS));
     }
@@ -46,6 +46,7 @@ public class PopulationDataRetrievalService {
     }
 
     return mostPopulatedCountries.stream()
+                                 .filter(r -> r.population() != null)
                                  .map(CountryPopulationRecord::country)
                                  .collect(Collectors.toList());
   }
